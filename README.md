@@ -2,7 +2,20 @@
 
 **An AI-native, human-centric Version Control System** — built to replace Git's complexity with clarity, safety, and semantic understanding.
 
+## Installation (Universal One-Line)
+
+### macOS / Linux
+```bash
+brew tap sathvik0548/tap && brew install vault-ai
+```
+
+### Windows (PowerShell)
+```powershell
+iwr -useb https://github.com/sathvik0548/vault-ai/releases/latest/download/vault-ai-windows-x64.exe -OutFile vault.exe
+```
+
 ## Quickstart
+
 
 ```bash
 # Initialize a repository
