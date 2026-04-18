@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vault-AI: Detailed User Guide</title>
+    <style>
+        body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; color: #e5e7eb; background: #0a0a0f; }
+        h1 { color: #818cf8; border-bottom: 2px solid #1f2937; padding-bottom: 10px; margin-bottom: 30px; font-size: 2.5rem; }
+        h2 { color: #f3f4f6; margin-top: 40px; font-size: 1.8rem; background: rgba(99, 102, 241, 0.1); padding: 10px 15px; border-radius: 8px; border-left: 4px solid #6366f1; }
+        h3 { color: #d1d5db; margin-top: 25px; }
+        code { background: #1f2937; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; color: #a2a8d3;}
+        pre { background: #111827; color: #e5e7eb; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid #374151; }
+        p, li { font-size: 1.1rem; }
+        .step { margin-bottom: 25px; }
+        .note { background: rgba(255, 189, 46, 0.1); border-left: 4px solid #ffbd2e; padding: 10px 15px; margin: 15px 0; font-size: 0.95rem; }
+        
+        @media print {
+            body { background: white; color: black; }
+            h1 { color: black; border-bottom: 2px solid #ccc; }
+            h2, h3 { color: #333; background: transparent; border-left: none; }
+            code, pre { background: #f5f5f5; color: #000; border: 1px solid #ddd; }
+            .note { background: #fffde7; border-left: 4px solid #fbc02d; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Vault-AI: Detailed Step-by-Step User Guide</h1>
+    <p>Welcome to <strong>Vault-AI</strong>. This comprehensive guide will walk you through every step of using the AI-native Version Control System, from initial installation to advanced sandboxing.</p>
+    
+    <h2>Stage 1: Setup & Initialization</h2>
+    
+    <div class="step">
+        <h3>Step 1.1: Install Vault-AI</h3>
+        <p>Ensure you have Vault-AI installed globally. Follow the instructions on the download page for your specific operating system (macOS/Linux via Homebrew, or Windows via PowerShell).</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 1.2: Configure your AI Copilot</h3>
+        <p>Before saving any code, you need to configure the AI engine that will write your commit messages.</p>
+        <p>Open your terminal and run:</p>
+        <pre><code>vault-ai setup</code></pre>
+        <ul>
+            <li>You will be prompted to select an AI Engine: <code>ollama</code> (local), <code>gemini</code>, or <code>openai</code>.</li>
+            <li>If you choose a remote API (Gemini/OpenAI), paste your API key when prompted.</li>
+            <li>Vault-AI securely stores this key locally in your configuration file.</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Step 1.3: Initialize your repository</h3>
+        <p>Navigate to your project directory in the terminal and start tracking your code:</p>
+        <pre><code>vault-ai init</code></pre>
+        <p>This creates a hidden <code>.vault</code> folder inside your project. This is where Vault-AI will store all your secure snapshots and configuration data.</p>
+    </div>
+    
+    <h2>Stage 2: Writing Code and Saving Iterations</h2>
+    
+    <div class="step">
+        <h3>Step 2.1: Write your code normally</h3>
+        <p>Make changes, add new files, delete old files, or refactor exactly as you normally would in your IDE.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 2.2: Let AI generate your commit message</h3>
+        <p>Unlike Git, you do not need to stage files (e.g., no <code>git add .</code>). Simply ask Vault-AI to save your current state:</p>
+        <pre><code>vault-ai save</code></pre>
+        <p>How it works behind the scenes:</p>
+        <ol>
+            <li><strong>Secret Guard:</strong> Vault-AI scans your code to ensure you didn't accidentally hardcode any sensitive API keys.</li>
+            <li><strong>Diff Analysis:</strong> The AI reads the differences between your code now and your last save.</li>
+            <li><strong>Generation:</strong> The AI generates a semantic, descriptive commit message explaining <em>why</em> you made the changes.</li>
+        </ol>
+        <p>You will be asked to confirm, edit, or reject the AI's suggested message. Once you press 'y', your code is permanently saved to the vault timeline.</p>
+    </div>
+
+    <div class="step">
+        <h3>Step 2.3: Manual Override (Optional)</h3>
+        <p>If you prefer to write your own message, you can bypass the AI by providing the message inline:</p>
+        <pre><code>vault-ai save -m "Fixed the login button styling"</code></pre>
+    </div>
+    
+    <h2>Stage 3: Reviewing Project History</h2>
+    
+    <div class="step">
+        <h3>Step 3.1: View current status</h3>
+        <p>To see what files you have modified since your last save, run:</p>
+        <pre><code>vault-ai status</code></pre>
+    </div>
+
+    <div class="step">
+        <h3>Step 3.2: View the timeline</h3>
+        <p>To review your past saves, AI-generated messages, and snapshot hashes, run:</p>
+        <pre><code>vault-ai history</code></pre>
+    </div>
+    
+    <h2>Stage 4: Advanced usage - Virtual Sandboxes</h2>
+    <p>Sandboxes allow you to experiment. Think of them as isolated testing environments. If you want to try a massive refactor or new feature, do it in a sandbox.</p>
+
+    <div class="step">
+        <h3>Step 4.1: Enter a Sandbox</h3>
+        <p>Create a fresh, isolated workspace identical to your current project:</p>
+        <pre><code>vault-ai sandbox enter</code></pre>
+        <div class="note">You will be teleported into a new directory starting with <code>sb_</code>. Inside here, you can break the code, install new dependencies, or run tests without affecting your main project.</div>
+    </div>
+
+    <div class="step">
+        <h3>Step 4.2: Merge or Discard</h3>
+        <p>If your experiment is successful, you can pull the updated code back into your main vault automatically:</p>
+        <pre><code>vault-ai sandbox merge</code></pre>
+        <p>If the experiment failed and you hate the code, simply delete the sandbox folder. Your main project remains untouched.</p>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>By relying on Vault-AI, you bypass the friction of staging, avoid committing secrets, and maintain an immaculate commit history written by artificial intelligence.</p>
+</body>
+</html>
